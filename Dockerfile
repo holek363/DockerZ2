@@ -2,7 +2,7 @@ FROM node:22-alpine AS deps
 LABEL org.opencontainers.image.authors="Jakub Holka"
 WORKDIR /app
 # Kopiujemy tylko pliki zależności
-COPY ./package*.json ./
+COPY ./P1/package*.json ./
 # Instalujemy zależności
 RUN npm install --production
 FROM node:22-alpine
@@ -11,7 +11,7 @@ WORKDIR /app
 # Kopiujemy zbudowane zależności
 COPY --from=deps /app/node_modules ./node_modules
 # Kopiujemy pozostałe pliki aplikacji
-COPY . .
+COPY ./P1 .
 # Zmienna środowiskowa
 ENV PORT=3000
 # Ustawienie domyślnego polecenia uruchamiającego aplikację
