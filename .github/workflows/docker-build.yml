@@ -1,11 +1,11 @@
-name: Build and Push Multi-Arch Docker Image
+name: Build and Push Docker Image
 
 on:
   push:
     branches: [main]
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github.repository }}
+  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/dockerz2
   CACHE_REPO: docker.io/<TWOJ_DOCKERHUB_USERNAME>/build-cache
 
 jobs:
