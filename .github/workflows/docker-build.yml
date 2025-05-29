@@ -6,7 +6,7 @@ on:
 
 env:
   IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/dockerz2
-  CACHE_REPO: docker.io/<TWOJ_DOCKERHUB_USERNAME>/build-cache
+  CACHE_REPO: docker.io/holek363/build-cache
 
 jobs:
   build:
