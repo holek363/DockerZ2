@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <title>Prognoza pogody</title>
+</head>
+<body>
+<h1>Wybierz kraj i miasto</h1>
+<form id="weatherForm">
+    <label>Kraj:
+        <select id="country">
+            <option value="PL">Polska</option>
+            <option value="DE">Niemcy</option>
+            <option value="US">USA</option>
+        </select>
+    </label>
+    <label>Miasto:
+        <select id="city">
+            <option value="Warsaw">Warszawa</option>
+            <option value="Lublin">Lublin</option>
+            <option value="Berlin">Berlin</option>
+            <option value="New York">Nowy Jork</option>
+            <option value="Krakow">Kraków</option>
+            <option value="Gdansk">Gdańsk</option>
+        </select>
+    </label>
+    <button type="submit">Wyświetl pogodę</button>
+</form>
+<div id="weatherResult"></div>
+<script>
+    document.getElementById('weatherForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const country = document.getElementById('country').value;
+        const city = document.getElementById('city').value;
+        const res = await fetch('/weather', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ country, city })
+        });
+        const data = await res.json();
+        const output = document.getElementById('weatherResult');
+        if (data.main) {
+            output.innerHTML = `
+          <h2>${data.name}, ${data.sys.country}</h2>
+          <p>Temperatura: ${data.main.temp} °C</p>
+          <p>Opis: ${data.weather[0].description}</p>
+        `;
+        } else {
+            output.textContent = "Nie udało się pobrać danych pogodowych.";
+        }
+    });
+</script>
+</body>
+</html>
