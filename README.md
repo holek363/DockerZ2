@@ -9,7 +9,7 @@ Utworzenie nowego repozytorium
 
 # Dodanie plików
 git add .
-git commit -m "Inicjalny commit: kod + Dockerfile + workflow"
+git commit -m "FirstCommit"
 
 # Przesłanie plików
 git branch -M main
